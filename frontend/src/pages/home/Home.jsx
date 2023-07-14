@@ -1,12 +1,13 @@
 import React from 'react'
-import Content from '../../component/content/Content'
+
+import DashBoard from '../../component/DashBoard/DashBoard'
 
 
 export const Home = () => {
   return (
     <div>
 
-       <Content/>
+       <DashBoard/>
       
 
 

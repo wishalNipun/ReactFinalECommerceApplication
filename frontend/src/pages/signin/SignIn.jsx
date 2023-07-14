@@ -83,8 +83,8 @@ export default function SignIn() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            <Button href='home'
-              type="submit"
+            <Button href='dashboard'
+              type="button"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
@@ -98,7 +98,7 @@ export default function SignIn() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="signup" variant="body2">
+                <Link href="" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
