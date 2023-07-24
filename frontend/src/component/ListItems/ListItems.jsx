@@ -8,7 +8,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import Inventory2Icon from '@mui/icons-material/Inventory2';
-import LayersIcon from '@mui/icons-material/Layers';
+
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import { NavLink } from 'react-router-dom';
 import './ListItems.css'
@@ -23,16 +23,9 @@ export const mainListItems = (
         <ListItemText primary="Dashboard" />
       </ListItemButton>
     </NavLink>
-      <NavLink to={'/dashboard/itemForm'} className="nav">
-        <ListItemButton type='button'>
-        <ListItemIcon>
-          <ShoppingCartIcon />
-        </ListItemIcon>
-        <ListItemText primary="Orders" />
-      </ListItemButton>
-      </NavLink>
-    
-      <NavLink to={'/dashboard/customerForm'} className="nav">
+
+
+    <NavLink to={'/dashboard/customerForm'} className="nav">
         <ListItemButton type='button'>
           <ListItemIcon>
             <PeopleIcon />
@@ -49,7 +42,17 @@ export const mainListItems = (
         <ListItemText primary="Items" />
       </ListItemButton>
       </NavLink>
-      
+
+      <NavLink to={'/dashboard/itemForm'} className="nav">
+        <ListItemButton type='button'>
+        <ListItemIcon>
+          <ShoppingCartIcon />
+        </ListItemIcon>
+        <ListItemText primary="Orders" />
+      </ListItemButton>
+      </NavLink>
+    
+
     
       <NavLink className="nav">
         <ListItemButton>

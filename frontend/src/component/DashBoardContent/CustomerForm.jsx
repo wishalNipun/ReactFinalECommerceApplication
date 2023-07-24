@@ -1,4 +1,10 @@
 import React from 'react'
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+import CustomizedTables from './ItemTable';
+import { Container } from '@mui/material';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 
 export const CustomerForm = () => {
   return (
@@ -11,7 +17,12 @@ export const CustomerForm = () => {
           <TextField sx={{width:250}} id="outlined-basic" label="Item Unit Price" variant="outlined" />
           <TextField sx={{width:250}} id="outlined-basic" label="Item Quantity of Hand" variant="outlined" />
 
-          <Button variant="contained">Save</Button>
+
+          <ButtonGroup variant="contained" aria-label="outlined  button group">
+          <Button color="success">Save</Button>
+          <Button color="secondary">Update</Button>
+          <Button color="error">Delete</Button>
+          </ButtonGroup>
       
         </Stack>
 
