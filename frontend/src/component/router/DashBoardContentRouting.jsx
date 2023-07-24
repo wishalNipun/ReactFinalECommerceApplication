@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom"
 
 import { ItemForm } from '../DashBoardContent/ItemForm'
 import { CustomerForm } from '../DashBoardContent/CustomerForm'
+import { OrderForm } from '../DashBoardContent/OrderForm'
 
 export const DashBoardContentRouting = () => {
   return (
@@ -11,6 +12,7 @@ export const DashBoardContentRouting = () => {
         <Routes>
             <Route path="itemForm" element={<ItemForm/>}/>
             <Route path="customerForm" element={<CustomerForm/>}/>
+            <Route path="orderForm" element={<OrderForm/>}/>
        </Routes>
 
     </div>
