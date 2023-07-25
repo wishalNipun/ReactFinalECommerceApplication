@@ -130,7 +130,7 @@ export default function DashBoard() {
           <Divider />
           <List component="nav">
             {mainListItems}
-            <Divider sx={{ my: 1 }} />
+            <Divider sx={{ my: 1}} />
             {secondaryListItems}
           </List>
         </Drawer>
@@ -143,15 +143,16 @@ export default function DashBoard() {
                 : theme.palette.grey[900],
             flexGrow: 1,
             height: '100vh',
+          
             overflow: 'auto',
           }}
         >
           <Toolbar />
-          <Container sx={{ mt: 5}}>
         
-            <DashBoardContentRouting/>
+        
+          <DashBoardContentRouting/>
 
-          </Container>
+         
         </Box>
       </Box>
     </ThemeProvider>

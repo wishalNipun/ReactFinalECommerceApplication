@@ -8,14 +8,14 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 
 export const CustomerForm = () => {
   return (
-    <div> <Container sx={{ mt: 5}}>
+    <div> <Container sx={{ mt: 3}}>
     <h1>Customer Mangement Form</h1>
     
         <Stack direction="row" spacing={2} useFlexGap flexWrap="wrap">
-          <TextField sx={{width:250}} id="outlined-basic" label="Customer Name" variant="outlined" />
-          <TextField sx={{width:250}} id="outlined-basic" label="Item Pack Size" variant="outlined" />
-          <TextField sx={{width:250}} id="outlined-basic" label="Item Unit Price" variant="outlined" />
-          <TextField sx={{width:250}} id="outlined-basic" label="Item Quantity of Hand" variant="outlined" />
+          <TextField sx={{width:250}} id="outlined-basic" label="Customer Name" variant="outlined"  size="small"/>
+          <TextField sx={{width:250}} id="outlined-basic" label="Item Pack Size" variant="outlined"  size="small"/>
+          <TextField sx={{width:250}} id="outlined-basic" label="Item Unit Price" variant="outlined" size="small" />
+          <TextField sx={{width:250}} id="outlined-basic" label="Item Quantity of Hand" variant="outlined" size="small" />
 
 
           <ButtonGroup variant="contained" aria-label="outlined  button group">

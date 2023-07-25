@@ -25,13 +25,13 @@ export const ItemForm = () => {
 
   return (
     <div>
-      <Container sx={{ mt: 5 }}>
+      <Container sx={{ mt: 3 }}>
         <h1>Item Management</h1>
         <Stack direction="row" spacing={2} useFlexGap flexWrap="wrap">
-          <TextField sx={{ width: 250 }} id="outlined-basic" label="Item Name" variant="outlined" />
-          <TextField sx={{ width: 250 }} id="outlined-basic" label="Item Pack Size" variant="outlined" />
-          <TextField sx={{ width: 250 }} id="outlined-basic" label="Item Unit Price" variant="outlined" />
-          <TextField sx={{ width: 250 }} id="outlined-basic" label="Item Quantity of Hand" variant="outlined" />
+          <TextField sx={{ width: 250 }} id="outlined-basic" label="Item Name" variant="outlined"  size="small"/>
+          <TextField sx={{ width: 250 }} id="outlined-basic" label="Item Pack Size" variant="outlined"  size="small"/>
+          <TextField sx={{ width: 250 }} id="outlined-basic" label="Item Unit Price" variant="outlined"  size="small"/>
+          <TextField sx={{ width: 250 }} id="outlined-basic" label="Item Quantity of Hand" variant="outlined"  size="small"/>
 
           <TextField
             ref={fileInputRef}

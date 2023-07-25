@@ -1,39 +1,31 @@
-import React from 'react'
+import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
-
+import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { CardContent } from '@mui/material';
 
-export const CardComponet = () => {
+export default function CardComponent({ imageSrc }) {
   return (
-    <Card
-    sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-  >
-    <CardMedia
-      component="div"
-      sx={{
-        // 16:9
-        pt: '56.25%',
-      }}
-      image="https://source.unsplash.com/random?wallpapers"
-    />
-    <CardContent sx={{ flexGrow: 1 }}>
-      <Typography gutterBottom variant="h5" component="h2">
-        Heading
-      </Typography>
-      <Typography>
-        This is a media card. You can use this section to describe the
-        content.
-      </Typography>
-    </CardContent>
-    <CardActions>
-      <Button size="small">View</Button>
-      <Button size="small">Edit</Button>
-    </CardActions>
-  </Card>
-  )
+    <Card sx={{ maxWidth: 200 }}>
+      <CardMedia
+        sx={{ height: 140 }}
+        image={ imageSrc }
+        title="green iguana"
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          Lizard
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Lizards ar
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">Share</Button>
+        <Button size="small">Learn More</Button>
+      </CardActions>
+    </Card>
+  );
 }
-
