@@ -2,11 +2,9 @@ import axios from 'axios';
 import React,{ useState, useEffect } from 'react';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
-import CustomizedTables from './ItemTable';
 import { Container } from '@mui/material';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import CustomerFormTable from './CustomerFormTable';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -19,7 +17,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
-
+const Swal = require('sweetalert2');
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -34,7 +32,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {
     backgroundColor: theme.palette.action.hover,
   },
-  // hide last border
+  
   '&:last-child td, &:last-child th': {
     border: 0,
   },
@@ -63,8 +61,15 @@ export const CustomerForm = () => {
     
     axios.post(baseURL+'/saveCustomer', formData)
       .then((response) => {
-        
-        alert('Data saved successfully:', response.data);
+
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: response.data,
+          showConfirmButton: false,
+          timer: 1500
+      })
+     
         loadAllCustomers();
         
       })
@@ -126,7 +131,6 @@ export const CustomerForm = () => {
           <ButtonGroup variant="contained" aria-label="outlined  button group">
           <Button color="success" onClick={handleSave}>Save</Button>
           <Button color="secondary">Update</Button>
-          <Button color="error">Delete</Button>
           </ButtonGroup>
       
         </Stack>

@@ -10,6 +10,7 @@ export const DashBoardContentRouting = () => {
     <div>
 
         <Routes>
+            <Route path="/" element={<CustomerForm/>}/>  
             <Route path="itemForm" element={<ItemForm/>}/>
             <Route path="customerForm" element={<CustomerForm/>}/>
             <Route path="orderForm" element={<OrderForm/>}/>
