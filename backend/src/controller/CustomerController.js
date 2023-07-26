@@ -27,7 +27,7 @@ class CustomerController {
     
         const updateData = req.body;
 
-        Customer.findOneAndUpdate({ cId: cID }, updateData, { new: true })
+        Customer.findByIdAndUpdate({ customerId: cID }, updateData, { new: true })
             .then((updatedCustomer) => {
                 if (!updatedCustomer) {
                     return res.status(404).json({
@@ -48,10 +48,10 @@ class CustomerController {
     }
 
     deleteCustomer = async(req, res) => {
-        const custId = req.params.customerId;
-        console.log("req delete customer id : ", custId);
+        const customerId = req.params.customerId;
+        console.log("req delete customer id : ", customerId);
 
-        Customer.findOneAndDelete({cId: custId})
+        Customer.findOneAndDelete({customerId: customerId})
             .then(() => {
                 return res.status(200).json({
                     success: "Delete successfully"

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React,{ useState, useEffect } from 'react';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import CustomizedTables from './ItemTable';
@@ -7,9 +7,41 @@ import { Container } from '@mui/material';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import CustomerFormTable from './CustomerFormTable';
+import { styled } from '@mui/material/styles';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  '&:nth-of-type(odd)': {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  '&:last-child td, &:last-child th': {
+    border: 0,
+  },
+}));
 
 export const CustomerForm = () => {
+  
   const baseURL='http://localhost:5000/api/customers'
   const [formData, setFormData] = useState({
     customerId: '',
@@ -28,16 +60,56 @@ export const CustomerForm = () => {
   };
 
   const handleSave = () => {
-    // Make a POST request to your backend API using Axios
+    
     axios.post(baseURL+'/saveCustomer', formData)
       .then((response) => {
-        // Handle successful response (optional)
+        
         alert('Data saved successfully:', response.data);
+        loadAllCustomers();
+        
       })
       .catch((error) => {
-        // Handle error (optional)
+       
         alert('Error saving data:', error);
       });
+  };
+  
+  const [rows, setRows] = useState([]);
+
+  useEffect(() => {
+   loadAllCustomers();
+    
+  }, []); 
+
+  function loadAllCustomers(){
+    axios.get(baseURL+'/')
+    .then((response) => {
+      
+      setRows(response.data);
+    })
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+    });
+  }
+
+
+  const handleUpdate = (customerId) => {
+    
+  };
+
+  const handleDelete = (customerId) => {
+
+    console.log(customerId);
+    axios
+    .delete(`${baseURL}/deleteCustomer/${customerId}`)
+    .then((response) => {
+      alert(response);
+   
+      loadAllCustomers();
+    })
+    .catch((error) => {
+      console.error('Error deleting customer:', error);
+    });
   };
   return (
     <div> <Container sx={{ mt: 3}}>
@@ -64,7 +136,45 @@ export const CustomerForm = () => {
 
      <Container sx={{ mt: 5}}>
     
-          <CustomerFormTable/>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <TableHead>
+              <TableRow>
+                <StyledTableCell>Customer Id</StyledTableCell>
+                <StyledTableCell align="right">Customer Name</StyledTableCell>
+                <StyledTableCell align="right">Customer Address</StyledTableCell>
+                <StyledTableCell align="right">Customer Email</StyledTableCell>
+                <StyledTableCell align="right">Customer ContactNumber</StyledTableCell>
+                <StyledTableCell align="right"></StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+            {rows.map((row) => (
+                <StyledTableRow key={row.customerId}>
+                  <StyledTableCell component="th" scope="row">
+                    {row.customerId}
+                  </StyledTableCell>
+                  <StyledTableCell align="right">{row.customerName}</StyledTableCell>
+                  <StyledTableCell align="right">{row.customerAddress}</StyledTableCell>
+                  <StyledTableCell align="right">{row.customerEmail}</StyledTableCell>
+                  <StyledTableCell align="right">{row.customerContactNumber}</StyledTableCell>
+                  <StyledTableCell align="right"> 
+                  <IconButton
+                      color="primary"
+                      onClick={() => handleUpdate(row.customerId)}
+                    >
+                      <EditIcon />
+                    </IconButton>
+                
+                  <IconButton aria-label="delete" color="error"  onClick={() => handleDelete(row.customerId)}>
+                    <DeleteIcon />
+                    </IconButton>
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
 
       </Container></div>
   )
