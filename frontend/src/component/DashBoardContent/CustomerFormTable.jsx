@@ -8,7 +8,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -57,6 +58,7 @@ export default function CustomerFormTable() {
             <StyledTableCell align="right">Customer Address</StyledTableCell>
             <StyledTableCell align="right">Customer Email</StyledTableCell>
             <StyledTableCell align="right">Customer ContactNumber</StyledTableCell>
+            <StyledTableCell align="right"></StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -69,6 +71,10 @@ export default function CustomerFormTable() {
               <StyledTableCell align="right">{row.customerAddress}</StyledTableCell>
               <StyledTableCell align="right">{row.customerEmail}</StyledTableCell>
               <StyledTableCell align="right">{row.customerContactNumber}</StyledTableCell>
+              <StyledTableCell align="right"> <IconButton aria-label="delete" color="error">
+                <DeleteIcon />
+                </IconButton>
+              </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
