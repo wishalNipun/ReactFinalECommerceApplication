@@ -82,6 +82,8 @@ export const CustomerForm = () => {
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
+
+    
    loadAllCustomers();
     
   }, []); 
@@ -97,24 +99,45 @@ export const CustomerForm = () => {
     });
   }
 
-
   const handleUpdate = (customerId) => {
-    
+
+  const selectedRow = rows.find((row) => row.customerId === customerId);
+  
+    setFormData({
+      customerId: selectedRow.customerId,
+      customerName: selectedRow.customerName,
+      customerAddress: selectedRow.customerAddress,
+      customerEmail: selectedRow.customerEmail,
+      customerContactNumber: selectedRow.customerContactNumber,
+    });
   };
 
   const handleDelete = (customerId) => {
 
-    console.log(customerId);
-    axios
-    .delete(`${baseURL}/deleteCustomer/${customerId}`)
-    .then((response) => {
-      alert(response);
-   
-      loadAllCustomers();
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+          console.log(customerId);
+          axios.delete(`${baseURL}/deleteCustomer/${customerId}`)
+          .then((response) => {
+            loadAllCustomers();
+          })
+          .catch((error) => {
+            console.error('Error deleting customer:', error);
+          });
+
+        }
     })
-    .catch((error) => {
-      console.error('Error deleting customer:', error);
-    });
+
+   
   };
   return (
     <div> <Container sx={{ mt: 3}}>
@@ -131,6 +154,7 @@ export const CustomerForm = () => {
           <ButtonGroup variant="contained" aria-label="outlined  button group">
           <Button color="success" onClick={handleSave}>Save</Button>
           <Button color="secondary">Update</Button>
+         
           </ButtonGroup>
       
         </Stack>

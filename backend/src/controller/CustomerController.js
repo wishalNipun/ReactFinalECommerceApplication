@@ -22,12 +22,12 @@ class CustomerController {
 
     //update customer
     updateCustomer = async(req, res) => {
-        const cID = req.params.customerID;
-        console.log('req customer ID : ', cID);
+        const customerId = req.params.customerID;
+        console.log('req customer ID : ', customerId);
     
         const updateData = req.body;
 
-        Customer.findByIdAndUpdate({ customerId: cID }, updateData, { new: true })
+        Customer.findOneAndUpdate({ customerId: customerId}, updateData, { new: true })
             .then((updatedCustomer) => {
                 if (!updatedCustomer) {
                     return res.status(404).json({
