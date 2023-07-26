@@ -80,7 +80,7 @@ export default function DashBoard() {
     <ThemeProvider theme={defaultTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <AppBar position="absolute" open={open} color='success'>
+        <AppBar position="absolute" open={open} style={{ backgroundColor: 'black'}}>
           <Toolbar
             sx={{
               pr: '24px', // keep right padding when drawer closed

@@ -33,9 +33,9 @@ export const OrderForm = () => {
       
   
         <Grid container sx={{ mt: 3}}>
-            <Grid xs={7} style={{ }}>
+            <Grid xs={7}>
 
-              <Container style={{ }}>
+              <Container >
 
                 <Paper sx={{ p: '2px 4px', display: 'flex', alignItems: 'center'}}
 >
