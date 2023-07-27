@@ -18,9 +18,9 @@ import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-import img from '../../assets/imgs/shoe1.jpg';
-import img2 from '../../assets/imgs/shoe2.jpg';
-
+import img from '../../assets/imgs/pepsi.jpg';
+import img2 from '../../assets/imgs/milo.jpg';
+import img3 from '../../assets/imgs/shoe1.jpg';
 export const OrderForm = () => {
 
   const [cusId, setCusId] = React.useState('');
@@ -28,6 +28,34 @@ export const OrderForm = () => {
   const handleChange = (event) => {
     setCusId(event.target.value);
   };
+
+  const temCarddata = [
+
+    {
+      img:img,
+      name: 'Pepsi',
+      price: 450,
+      packsize: '2l'
+    },
+    {
+      img:img,
+      name: 'Pepsi',
+      price: 350,
+      packsize: '1l'
+    },
+    {
+      img:img3,
+      name: 'NIKE',
+      price: 35000,
+      packsize: '44cm'
+    },
+    {
+      img:img2,
+      name: 'MILO',
+      price: 120,
+      packsize: '100ml'
+    }
+  ];
   return (
     <div >
       
@@ -55,13 +83,9 @@ export const OrderForm = () => {
              
               <Container style={{'height':'550px','overflowX':'auto'} } sx={{ mt: 1}}>
               <Stack direction="row" spacing={2} useFlexGap flexWrap="wrap" justifyContent="space-between">
-                <CardComponent  imageSrc={img}/>
-                <CardComponent  imageSrc={img2}/>
-                <CardComponent  imageSrc={img2}/>
-                <CardComponent  imageSrc={img}/>
-                <CardComponent  imageSrc={img}/>
-                <CardComponent  imageSrc={img2}/>
-                <CardComponent  imageSrc={img}/>
+                {temCarddata.map((item, index) => (
+                  <CardComponent key={index} name={item.name} price={item.price} packsize={item.packsize} imageSrc={item.img} item={item}/>
+                ))}
               </Stack>
                 
 

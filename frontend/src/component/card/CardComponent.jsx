@@ -5,27 +5,40 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import {useCart} from 'react-use-cart'
 
-export default function CardComponent({ imageSrc }) {
+const  CardComponent=(props) =>{
+
+const {addItem}=useCart();
+
   return (
     <Card sx={{ width: 200 }}>
       <CardMedia
         sx={{ height: 140 }}
-        image={ imageSrc }
+        image={ props.imageSrc }
         title="green iguana"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-         Nike
+         {props.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Lizards ar
+          {props.packsize+"  Rs : "+props.price}
         </Typography>
       </CardContent>
       <CardActions>
-      <Button size="small">Add To Cart</Button>
+      <Button sx={{
+           
+            '&:hover': {
+              backgroundColor: 'black',
+              color:'white'
+            },
+          }} size="small"
+          onClick={()=>addItem(props.item)}
+          >Add To Cart</Button>
        
       </CardActions>
     </Card>
   );
 }
+export default CardComponent;
