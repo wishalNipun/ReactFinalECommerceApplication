@@ -13,11 +13,13 @@ const {addItem}=useCart();
 
   return (
     <Card sx={{ width: 200 }}>
+      <div>
       <CardMedia
-        sx={{ height: 140 }}
+        sx={{ height: 198}}
         image={ props.imageSrc }
         title="green iguana"
       />
+      </div>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
          {props.name}

@@ -1,5 +1,6 @@
+import axios from 'axios';
 import { Container } from '@mui/material'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
@@ -18,10 +19,29 @@ import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-import img from '../../assets/imgs/pepsi.jpg';
+import img from '../../assets/imgs/Coca-Cola-Soda-Pop-2-Liter-Bottle.png';
 import img2 from '../../assets/imgs/milo.jpg';
-import img3 from '../../assets/imgs/shoe1.jpg';
+import img3 from '../../assets/imgs/Sprite-Lemon-Lime-Soda-Pop-2-Liter-Bottle.png';
+import img4 from '../../assets/imgs/Coca-Cola-Soda-Pop-1-25-Liter-Bottle.png';
+
 export const OrderForm = () => {
+  const baseURL = 'http://localhost:5000/api/customers';
+  const [rows, setRows] = useState([]);
+
+  useEffect(() => {
+    loadAllCustomers();
+  }, []);
+
+  function loadAllCustomers() {
+    axios
+      .get(baseURL + '/')
+      .then((response) => {
+        setRows(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }
 
   const [cusId, setCusId] = React.useState('');
 
@@ -33,21 +53,21 @@ export const OrderForm = () => {
 
     {
       img:img,
-      name: 'Pepsi',
+      name: 'CoCa-Cola',
       price: 450,
       packsize: '2l'
     },
     {
-      img:img,
-      name: 'Pepsi',
+      img:img4,
+      name: 'CoCa-Cola',
       price: 350,
-      packsize: '1l'
+      packsize: '1.25l'
     },
     {
       img:img3,
-      name: 'NIKE',
-      price: 35000,
-      packsize: '44cm'
+      name: 'Sprite-Lemon-Lime-Soda',
+      price: 350,
+      packsize: '2l'
     },
     {
       img:img2,
@@ -104,13 +124,17 @@ export const OrderForm = () => {
                         size="small" 
                         
                       >
-                        <MenuItem selected value="Random Customer">
+                         {rows.map((row) => (
+                          <MenuItem value={row.customerId}>{row.customerId}</MenuItem>
+                         ))}
+                      </Select>
+                        {/* <MenuItem selected value="Random Customer">
                           <em>Random Customer</em>
                         </MenuItem>
                         <MenuItem value={10}>C001</MenuItem>
                         <MenuItem value={20}>C002</MenuItem>
                         <MenuItem value={30}>C003</MenuItem>
-                      </Select>
+                       */}
                       <FormHelperText>Select If Guest Customer : Random Customer</FormHelperText>
                 </FormControl>
                 <Cart/>
