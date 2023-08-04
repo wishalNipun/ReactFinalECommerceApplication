@@ -164,7 +164,7 @@ export const CustomerForm = () => {
     });
   };
 
-  // Function to check if the customer exists in the database
+
   const checkCustomerExistence = (customerId) => {
     axios
       .get(`${baseURL}/getCustomerById/${customerId}`)
