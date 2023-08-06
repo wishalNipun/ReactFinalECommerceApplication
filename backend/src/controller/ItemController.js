@@ -2,7 +2,7 @@ const Item = require('../models/Item');
 
 class ItemController{
 
-    //get all customers
+
     getAllItems = async(req, res) => {
         try {
             const itemList = await Item .find();
@@ -13,7 +13,7 @@ class ItemController{
         }
     }
 
-    //save customers
+   
     saveItem = async(req, res) => {
         console.log("Save Item Req : ", req.body);
         const data = await Item.create(req.body);
@@ -22,7 +22,6 @@ class ItemController{
         
     }
 
-    //update customer
     updateItem  = async(req, res) => {
         const itemId = req.params.itemId;
         console.log('req item ID : ', itemId);

@@ -17,7 +17,7 @@ const {addItem}=useCart();
       <CardMedia
         sx={{ height: 198}}
         image={ props.imageSrc }
-        title="green iguana"
+        
       />
       </div>
       <CardContent>

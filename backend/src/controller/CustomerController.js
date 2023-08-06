@@ -2,7 +2,6 @@ const Customer = require('../models/Customer');
 
 class CustomerController {
 
-    //get all customers
     getAllCustomers = async(req, res) => {
         try {
             const customerList = await Customer.find();
@@ -13,14 +12,14 @@ class CustomerController {
         }
     }
 
-    //save customers
+    
     saveCustomer = async(req, res) => {
         console.log("Save Customer Req : ", req.body);
         const data = await Customer.create(req.body);
         res.send("Customer Saved Successfully...!");
     }
 
-    //update customer
+
     updateCustomer = async(req, res) => {
         const customerId = req.params.customerID;
         console.log('req customer ID : ', customerId);
